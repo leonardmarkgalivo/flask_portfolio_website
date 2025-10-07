@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leonard’s Pirate Codebase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* YouTube Background */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .video-background iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120vw;
+      height: 120vh;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: brightness(0.6);
+    }
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 2em;
+      text-shadow: 0 0 20px #00ffff, 0 0 40px #0077ff;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.4; }
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2em;
+    }
+
+    nav a {
+      color: #00ffff;
+      text-decoration: none;
+      padding: 1em 2em;
+      border: 2px solid #00ffff;
+      border-radius: 50px;
+      transition: 0.3s;
+      font-weight: bold;
+      backdrop-filter: blur(10px);
+    }
+
+    nav a:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 20px #00ffff;
+      transform: scale(1.05);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      text-align: center;
+      font-size: 0.9em;
+      color: rgba(255,255,255,0.7);
+    }
+  </style>
+</head>
+<body>
+  <!-- YouTube Background -->
+  <div class="video-background">
+    <iframe
+      src="https://www.youtube.com/embed/KHpnKG2pDLs?autoplay=1&mute=1&loop=1&playlist=KHpnKG2pDLs&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <h1>Welcome to Leonard's Pirate Network ⚓💻</h1>
+  <nav>
+    <ul>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/works">Works</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <p>“The Code of the Pirate King runs on open source.” 🏴‍☠️</p>
+  </footer>
+</body>
+</html>

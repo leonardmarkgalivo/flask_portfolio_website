@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Works</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; padding: 20px; 
+            background: linear-gradient(135deg, #7B68EE 0%, #9370DB 100%); 
+            min-height: 100vh; color: white; 
+        }
+        h1 { 
+            text-align: center; font-size: 2.5em; margin-bottom: 3em; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+            color: #FFD700; 
+        }
+        .projects-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2em; }
+        .project-card { 
+            background: rgba(255,255,255,0.1); padding: 2em; border-radius: 20px; text-align: center; width: 250px; 
+            transition: all 0.3s ease; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); 
+        }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(75,0,130,0.3); }
+        .project-icon { 
+            width: 80px; height: 80px; margin: 0 auto 1em; display: flex; align-items: center; justify-content: center; 
+            border-radius: 50%; color: #BA55D3; font-size: 2em; transition: transform 0.3s ease;
+        }
+        .project-card:hover .project-icon { transform: scale(1.2); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+        .project-card h2 { margin: 0 0 1em; font-size: 1.5em; color: #FFD700; }
+        .project-card p { margin-bottom: 1em; }
+        .project-card a { 
+            display: inline-block; padding: 1em 2em; background: linear-gradient(45deg, #BA55D3, #7B68EE);
+            color: white; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all 0.3s ease; 
+        }
+        .project-card a:hover { 
+            transform: scale(1.05); box-shadow: 0 4px 8px rgba(0,0,0,0.2); background: linear-gradient(45deg, #4B0082, #BA55D3);
+        }
+
+        /* Unique icon accents */
+        .project-card:nth-child(1) .project-icon { color: #BA55D3; }
+        .project-card:nth-child(2) .project-icon { color: #9370DB; }
+        .project-card:nth-child(3) .triangle-shape { 
+            width: 0; height: 0; 
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 45px solid #7B68EE;
+        }
+
+        nav { text-align: center; margin-top: 2em; }
+        nav a { color: #FFD700; text-decoration: none; margin: 0 1em; font-weight: bold; }
+        nav a:hover { color: #BA55D3; }
+    </style>
+</head>
+<body>
+    <h1>Our Projects <i class="fas fa-crown" style="font-size: 0.5em; color: #FFD700;"></i></h1>
+    <div class="projects-grid">
+        <div class="project-card">
+            <i class="fas fa-font project-icon"></i>
+            <h2>toUpperCase</h2>
+            <p>Convert any string to uppercase!</p>
+            <a href="/works/uppercase">Launch Project</a>
+        </div>
+
+        <div class="project-card">
+            <i class="fas fa-circle project-icon"></i>
+            <h2>Area of a Circle</h2>
+            <p>Calculate the area using radius.</p>
+            <a href="/works/area/circle">Launch Project</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon">
+                <div class="triangle-shape"></div> <!-- Mini Triangle -->
+            </div>
+            <h2>Area of a Triangle</h2>
+            <p>Calculate the area using base and height.</p>
+            <a href="/works/area/triangle">Launch Project</a>
+        </div>
+    </div>
+    <nav>
+        <a href="/">← Back to Home</a>
+    </nav>
+</body>
+</html>

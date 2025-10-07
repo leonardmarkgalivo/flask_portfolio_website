@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; color: white; 
+            display: flex; flex-direction: column; align-items: center; 
+        }
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 2em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .contact-info { 
+            background: rgba(255,255,255,0.1); 
+            padding: 2em; 
+            border-radius: 20px; 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            width: 400px; 
+            text-align: center; 
+            margin-bottom: 2em; 
+        }
+        .contact-info ul { list-style: none; padding: 0; }
+        .contact-info li { margin: 0.5em 0; font-size: 1.1em; }
+        form { 
+            background: rgba(255,255,255,0.1); 
+            padding: 2em; 
+            border-radius: 20px; 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            width: 400px; 
+        }
+        label { display: block; margin-bottom: 0.5em; font-weight: bold; }
+        input, textarea { 
+            width: 100%; 
+            padding: 1em; 
+            border: none; 
+            border-radius: 10px; 
+            font-size: 1em; 
+            margin-bottom: 1em; 
+            transition: all 0.3s ease; 
+            box-sizing: border-box; 
+        }
+        input:focus, textarea:focus { 
+            outline: none; 
+            box-shadow: 0 0 10px rgba(255,255,255,0.5); 
+            background: rgba(255,255,255,0.9); 
+        }
+        input[type="submit"] { 
+            background: linear-gradient(45deg, #007BFF, #0056b3); 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+        }
+        input[type="submit"]:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+        }
+        .social-icons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1.5em; 
+            margin-top: 2em; 
+            flex-wrap: wrap; 
+        }
+        .social-link { 
+            font-size: 2em; 
+            color: white; 
+            text-decoration: none; 
+            padding: 0.5em; 
+            border-radius: 50%; 
+            transition: all 0.3s ease; 
+            background: rgba(255,255,255,0.1); 
+            width: 60px; 
+            height: 60px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .social-link:hover { 
+            transform: scale(1.2); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+        }
+        .social-link.facebook:hover { background: #1877f2; color: white; }
+        .social-link.linkedin:hover { background: #0077b5; color: white; }
+        .social-link.github:hover { background: #333; color: white; }
+        .social-link.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c); color: white; }
+        .social-link.twitter:hover { background: #1da1f2; color: white; }
+        nav { text-align: center; margin-top: 2em; }
+        nav a { color: white; text-decoration: none; margin: 0 1em; }
+    </style>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    
+    <div class="contact-info">
+        <p>Feel free to reach out with any questions!</p>
+        <ul>
+            <li><i class="fas fa-envelope"></i> Email: leonardmarkgalivo@gmail.com</li>
+            <li><i class="fas fa-phone"></i> Phone: (+69) 456-7890</li>
+            <li><i class="fas fa-map-marker-alt"></i> Address: PUP Sta. Mesa, Manila</li>
+            <li><i class="fas fa-clock"></i> Business Hours: Mon-Fri, 9 AM - 5 PM</li>
+        </ul>
+    </div>
+
+    <form action="https://formspree.io/f/xldpwdlb" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your name">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your message here..."></textarea>
+        <input type="submit" value="Send Message">
+    </form>
+
+    <div class="social-icons">
+  <a href="https://web.facebook.com/leonardmarkdalisay.galivo" target="_blank" class="social-link facebook" title="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/leonard-mark-galivo-05343b333/" target="_blank" class="social-link linkedin" title="LinkedIn">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+  <a href="https://github.com/leonardmarkgalivo" target="_blank" class="social-link github" title="GitHub">
+    <i class="fab fa-github"></i>
+  </a>
+  <a href="https://www.instagram.com/leonardgalivo/" target="_blank" class="social-link instagram" title="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+
+    <nav>
+        <a href="/">← Back to Home</a> | <a href="/works">Projects</a>
+    </nav>
+</body>
+</html>
