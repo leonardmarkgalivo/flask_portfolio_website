@@ -1,6 +1,78 @@
 from flask import Flask, render_template, request
 import math
 
+# LinkedList Implementation
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def add(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+
+    def remove_beginning(self):
+        if not self.head:
+            return None
+        removed_data = self.head.data
+        self.head = self.head.next
+        return removed_data
+
+    def remove_at_end(self):
+        if not self.head:
+            return None
+        if not self.head.next:
+            removed_data = self.head.data
+            self.head = None
+            return removed_data
+        current = self.head
+        while current.next.next:
+            current = current.next
+        removed_data = current.next.data
+        current.next = None
+        return removed_data
+
+    def remove_at(self, data):
+        if not self.head:
+            return None
+        if self.head.data == data:
+            return self.remove_beginning()
+        current = self.head
+        while current.next and current.next.data != data:
+            current = current.next
+        if current.next:
+            removed_data = current.next.data
+            current.next = current.next.next
+            return removed_data
+        return None
+
+    def get_items(self):
+        items = []
+        current = self.head
+        while current:
+            items.append(current.data)
+            current = current.next
+        return items
+
+    def display(self):
+        items = self.get_items()
+        return " -> ".join(items) if items else "Empty list"
+
+linked_list = LinkedList()
+sushi_steps = ["cut fish", "wash rice", "prepare to assemble", "roll sushi", "eat sushi"]
+for step in sushi_steps:
+    linked_list.add(step)
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -68,9 +140,36 @@ def area_of_triangle():
                 result = "Error: Only numbers allowed for base and height (e.g., 10 or 5.5; no letters or symbols)."
     return render_template('triangle.html', result=result)
 
+@app.route('/works/linkedlist', methods=['GET', 'POST']) 
+def linkedlist():
+    result = None
+    if request.method == 'POST':
+        action = request.form.get('action')
+        if action == 'add':
+            data_input = request.form.get('data', '').strip()
+            if not data_input:
+                result = "Error: Data cannot be empty."
+            else:
+                linked_list.add(data_input)  
+                result = f"Added '{data_input}'."
+        elif action == 'remove_beginning':
+            removed = linked_list.remove_beginning()
+            result = f"Removed from beginning: '{removed}'" if removed is not None else "List is empty."
+        elif action == 'remove_end':
+            removed = linked_list.remove_at_end()
+            result = f"Removed from end: '{removed}'" if removed is not None else "List is empty."
+        elif action == 'remove_at':
+            data_input = request.form.get('data', '').strip()
+            if not data_input:
+                result = "Error: Data to remove cannot be empty."
+            else:
+                removed = linked_list.remove_at(data_input)
+                result = f"Removed: '{removed}'" if removed is not None else f"'{data_input}' not found."
+    return render_template('linkedlist.html', result=result, list_items=linked_list.get_items())
+
 @app.route('/contact')
 def contact():
-    return render_template('contacts.html')
+    return render_template('contact.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
