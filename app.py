@@ -1,12 +1,48 @@
 from flask import Flask, render_template, request
 import math
 
-# LinkedList Implementation
+# Node and Stack Classes (from your code)
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
 
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, data):
+        new_node = Node(data)
+        if self.top:
+            new_node.next = self.top
+        self.top = new_node
+
+    def pop(self):
+        if self.top is None:
+            return None
+        else:
+            popped_node = self.top
+            self.top = self.top.next
+            popped_node.next = None
+            return popped_node.data
+
+    def peek(self):
+        if self.top:
+            return self.top.data
+        else:
+            return None
+
+    def print_stack(self):
+        if self.top is None:
+            print("Stack is empty")
+        else:
+            current = self.top
+            print("Stack elements (top → bottom):")
+            while current:
+                print(current.data)
+                current = current.next
+
+# LinkedList for other projects (unchanged)
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -72,6 +108,30 @@ linked_list = LinkedList()
 sushi_steps = ["cut fish", "wash rice", "prepare to assemble", "roll sushi", "eat sushi"]
 for step in sushi_steps:
     linked_list.add(step)
+
+def infix_to_postfix(infix):
+    stack = Stack()
+    postfix = []
+    precedence = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+    
+    for char in infix:
+        if char.isalnum():  # Operand
+            postfix.append(char)
+        elif char == '(':
+            stack.push(char)
+        elif char == ')':
+            while stack.peek() != '(':
+                postfix.append(stack.pop())
+            stack.pop()  # Remove '('
+        else:  # Operator
+            while stack.peek() and stack.peek() != '(' and precedence.get(char, 0) <= precedence.get(stack.peek(), 0):
+                postfix.append(stack.pop())
+            stack.push(char)
+    
+    while stack.peek():
+        postfix.append(stack.pop())
+    
+    return ''.join(postfix)
 
 app = Flask(__name__)
 
@@ -140,7 +200,7 @@ def area_of_triangle():
                 result = "Error: Only numbers allowed for base and height (e.g., 10 or 5.5; no letters or symbols)."
     return render_template('triangle.html', result=result)
 
-@app.route('/works/linkedlist', methods=['GET', 'POST']) 
+@app.route('/works/linkedlist', methods=['GET', 'POST'])
 def linkedlist():
     result = None
     if request.method == 'POST':
@@ -150,7 +210,7 @@ def linkedlist():
             if not data_input:
                 result = "Error: Data cannot be empty."
             else:
-                linked_list.add(data_input)  
+                linked_list.add(data_input)
                 result = f"Added '{data_input}'."
         elif action == 'remove_beginning':
             removed = linked_list.remove_beginning()
@@ -166,6 +226,23 @@ def linkedlist():
                 removed = linked_list.remove_at(data_input)
                 result = f"Removed: '{removed}'" if removed is not None else f"'{data_input}' not found."
     return render_template('linkedlist.html', result=result, list_items=linked_list.get_items())
+
+@app.route('/works/infixtopostfix', methods=['GET', 'POST'])
+def infixtopostfix():
+    result = None
+    postfix_list = []
+    if request.method == 'POST':
+        infix_input = request.form.get('infix', '').strip()
+        if not infix_input:
+            result = "Error: Infix expression cannot be empty."
+        else:
+            try:
+                postfix = infix_to_postfix(infix_input)
+                result = f"Postfix: {postfix}"
+                postfix_list = list(postfix)  # For visualization as linked boxes
+            except:
+                result = "Error: Invalid infix expression (check operators/parentheses)."
+    return render_template('infixtopostfix.html', result=result, postfix_list=postfix_list)
 
 @app.route('/contact')
 def contact():
