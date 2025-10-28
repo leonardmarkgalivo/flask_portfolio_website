@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import math
 
-# Node and Stack Classes (from your code)
 class Node:
     def __init__(self, data):
         self.data = data
@@ -42,7 +41,6 @@ class Stack:
                 print(current.data)
                 current = current.next
 
-# LinkedList for other projects (unchanged)
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -115,15 +113,15 @@ def infix_to_postfix(infix):
     precedence = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
     
     for char in infix:
-        if char.isalnum():  # Operand
+        if char.isalnum():  
             postfix.append(char)
         elif char == '(':
             stack.push(char)
         elif char == ')':
             while stack.peek() != '(':
                 postfix.append(stack.pop())
-            stack.pop()  # Remove '('
-        else:  # Operator
+            stack.pop()  
+        else:  
             while stack.peek() and stack.peek() != '(' and precedence.get(char, 0) <= precedence.get(stack.peek(), 0):
                 postfix.append(stack.pop())
             stack.push(char)
@@ -183,7 +181,7 @@ def area_of_circle():
 def area_of_triangle():
     result = None
     if request.method == 'POST':
-        base_input = request.form.get('base', '').strip()  # Strip whitespace
+        base_input = request.form.get('base', '').strip()  
         height_input = request.form.get('height', '').strip()
         if not base_input or not height_input:
             result = "Error: Both base and height cannot be empty."
@@ -195,7 +193,7 @@ def area_of_triangle():
                     result = "Error: Base and height cannot be negative (use positive numbers only)."
                 else:
                     area = 0.5 * base_val * height_val
-                    result = f"The area is {area:.2f} square units."  # Format as string (2 decimals)
+                    result = f"The area is {area:.2f} square units."  
             except ValueError:
                 result = "Error: Only numbers allowed for base and height (e.g., 10 or 5.5; no letters or symbols)."
     return render_template('triangle.html', result=result)
@@ -239,7 +237,7 @@ def infixtopostfix():
             try:
                 postfix = infix_to_postfix(infix_input)
                 result = f"Postfix: {postfix}"
-                postfix_list = list(postfix)  # For visualization as linked boxes
+                postfix_list = list(postfix)  
             except:
                 result = "Error: Invalid infix expression (check operators/parentheses)."
     return render_template('infixtopostfix.html', result=result, postfix_list=postfix_list)
